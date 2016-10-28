@@ -3,16 +3,17 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
-function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botCoolGuy = /^\/cool guy$/,
-      botMemeBot = /^\MemeBot$/;
+var botCoolGuy = "/cool guy",
+  var botMemeBot = "MemeBot";
 
-  if (request.text && botCoolGuy.test(request.text)) {
+function respond() {
+  var request = JSON.parse(this.req.chunks[0]);
+
+  if (request.text && (request.text.indexOf(botCoolGuy) !== -1)) {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
-  } else if (request.text && botMemeBot.test(request.text)) {
+  } else if (request.text && (request.text.indexOf(botMemeBot) !== -1)) {
     this.res.writeHead(200);
     postMessage2();
     this.res.end();
